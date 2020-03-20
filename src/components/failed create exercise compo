@@ -1,0 +1,131 @@
+import React, { Component } from 'react';
+import DatePicker from 'react-datepicker';
+import "react-datepicker/dist/react-datepicker.css";
+//this- pointer is class ko refer krrha h
+export default class CreateExercises extends Component { 
+  constructor(props) {     
+    super(props);
+    
+// neeche wala code join krega this pointer ko class se
+    this.onChangeUsername = this.onChangeUsername.bind(this);
+    this.onChangeDescription = this.onChangeDescription.bind(this);
+    this.onChangeDuration = this.onChangeDuration.bind(this);
+    this.onChangeDate = this.onChangeDate.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
+    this.state= {
+      username: '',
+      description:'',
+      duration: 0,
+      date: new Date(),
+      users: []   // drop down milega isiilye array khali rakh di
+    }
+  }
+  // page dikhne se pehle se execute ho jaega
+    componentDidMount() {
+    this.setState({
+       users: ['test user'],
+       username: 'test user'
+    })
+
+  }
+
+
+
+    // below is method jisse state peoperties update hoti h
+  onChangeUsername(e) {   // variable e le lia
+    this.setState({
+      username: e.target.value // taget value mein e daal lia
+    });
+  }
+  onChangeDescription(e) {
+    this.setState({
+      description: e.target.value
+    })
+  }
+
+  onChangeDuration(e) {
+    this.setState({
+      duration: e.target.value
+    })
+  }
+
+  onChangeDate(date) { // date ka dabba khulelga
+    this.setState({
+      date: date
+    })
+  }
+  onsubmit(e) {
+    e.preventDefault();
+    const exercise = {
+      username: this.state.username,
+      description: this.state.description,
+      duration: this.state.duration,
+      date: this.state.date
+    }
+    console.log(exercise);
+
+    window.location = '/';
+
+  }
+  
+ // ye hai apna form code 
+  render() {
+    return (
+    <div>
+      <h3>Create New Exercise Log</h3>
+      <form onSubmit={this.onSubmit}>
+        <div className="form-group"> 
+          <label>Username: </label>
+          <select ref="userInput"
+              required
+              className="form-control"
+              value={this.state.username}
+              onChange={this.onChangeUsername}>
+              {
+                this.state.users.map(function(user) { // moongodb se niklega ye sab
+                  return <option 
+                    key={user}
+                    value={user}>{user}
+                    </option>;
+                })
+              }
+          </select>
+        </div>
+
+        <div className="form-group"> 
+          <label>Description: </label>
+          <input  type="text"
+              required
+              className="form-control"
+              value={this.state.description}
+              onChange={this.onChangeDescription}
+              />
+        </div>
+        
+        <div className="form-group">
+          <label>Duration (in minutes): </label>
+          <input 
+              type="text" 
+              className="form-control"
+              value={this.state.duration}
+              onChange={this.onChangeDuration}
+              />
+        </div>
+        <div className="form-group">
+          <label>Date: </label>
+          <div>
+            <DatePicker                 // install  dependency
+              selected={this.state.date}
+              onChange={this.onChangeDate}
+            />
+          </div>
+        </div>
+
+        <div className="form-group">
+          <input type="submit" value="Create Exercise Log" className="btn btn-primary" />
+        </div>
+      </form>
+    </div>
+    )
+  }
+}
