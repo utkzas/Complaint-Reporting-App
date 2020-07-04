@@ -1,3 +1,9 @@
+# Calm-ify Web App
+
+### MLH hackathon
+
+Team members: Utkarsh, Divya, Darshika
+
 ## Writing this for Divya and Darshika
 it's backend is in `/backend` folder
 it's frontend is in `/`     folder
@@ -6,7 +12,7 @@ and then `npm start` in both the folders
 
 
 
-
+## ignore the below
 
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
