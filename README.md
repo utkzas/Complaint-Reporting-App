@@ -1,3 +1,14 @@
+## Writing this for Divya and Darshika
+it's backend is in `/backend` folder
+it's frontend is in `/`     folder
+run `npm i` in both the folders 
+and then `npm start` in both the folders
+
+
+
+
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
